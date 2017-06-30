@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  ntachyon.web:
+    extends:
+      file: ../../docker-compose.yml
+      service: ntachyon
+    image: user/ntachyon.web
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        source: ${DOCKER_BUILD_SOURCE}
+  ntachyon:
+    extends:
+      file: ../NTachyon.Api/docker-compose.yml
+      service: ntachyon.api
