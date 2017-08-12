@@ -6,12 +6,8 @@ services:
     build:
       context: ./src/NTachyon.Web
       dockerfile: Dockerfile
-      args:
-        source: ${DOCKER_BUILD_SOURCE}
   ntachyon-api:
     image: user/ntachyon.api
     build:
       context: ./src/NTachyon.Api
       dockerfile: Dockerfile
-      args:
-        source: ${DOCKER_BUILD_SOURCE}

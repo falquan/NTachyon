@@ -1,6 +1,7 @@
 FROM microsoft/aspnetcore:latest
-ARG source
+ARG source=./bin/Debug/netcoreapp1.1/publish/
 WORKDIR /app
+COPY $source .
+
 EXPOSE 80
-COPY ${source:-bin/Release/PublishOutput} .
 ENTRYPOINT ["dotnet", "NTachyon.Api.dll"]
