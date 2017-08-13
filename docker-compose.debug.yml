@@ -1,0 +1,36 @@
+version: '3.1'
+
+services:
+  ntachyon.web:
+    container_name: ntachyon.web
+    image: ntachyon.web:latest
+    build:
+      context: ./src/NTachyon.Web
+      dockerfile: Dockerfile
+    restart: always
+    links:
+      - ntachyon.api
+    volumes:
+      - ./src/NTachyon.Web/bin/Debug/netcoreapp1.1/publish/:/app
+      - ~/.nuget/packages:/root/.nuget/packages:ro
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+    ports:
+      - 5000:5000
+  ntachyon.api:
+    container_name: ntachyon.api
+    image: ntachyon.api:latest
+    build:
+      context: ./src/NTachyon.Api
+      dockerfile: Dockerfile
+    volumes:
+      - ./src/NTachyon.Api/bin/Debug/netcoreapp1.1/publish/:/app
+      - ~/.nuget/packages:/root/.nuget/packages:ro
+      - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5001
+    ports:
+      - 5001:5001
