@@ -1,8 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using NTachyon.Api.Crontab;
 using NTachyon.Api.Model;
@@ -16,7 +12,7 @@ namespace NTachyon.Api.Controllers
 
         public CrontabController(ICrontab crontab)
         {
-            this.crontab = new NTachyon.Api.Crontab.NCrontab();
+            this.crontab = crontab;
         }
 
         // GET api/crontab/0 0 0 * 0 0
@@ -27,7 +23,7 @@ namespace NTachyon.Api.Controllers
 
             if (crontab.IsValid(decodedExpression))
             {
-                return new ObjectResult(crontab.Get(decodedExpression));
+                return Ok(crontab.Get(decodedExpression));
             }
 
             return BadRequest(decodedExpression);
@@ -38,7 +34,7 @@ namespace NTachyon.Api.Controllers
         {
             if (crontab.IsValid(request.Expression))
             {
-                return new ObjectResult(crontab.Get(request.Expression));
+                return Ok(crontab.Get(request.Expression));
             }
 
             return BadRequest(request);
