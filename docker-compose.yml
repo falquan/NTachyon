@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  ntachyon-web:
+    image: user/ntachyon.web
+    build:
+      context: ./src/NTachyon.Web
+      dockerfile: Dockerfile
+  ntachyon-api:
+    image: user/ntachyon.api
+    build:
+      context: ./src/NTachyon.Api
+      dockerfile: Dockerfile
