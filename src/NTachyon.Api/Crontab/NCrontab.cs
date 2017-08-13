@@ -18,11 +18,8 @@ namespace NTachyon.Api.Crontab
         {
             var schedule = CrontabSchedule.Parse(expression);
 
-            schedule.GetNextOccurrences(DateTime.Now, DateTime.Now.AddYears(occurances));
-
             return schedule.GetNextOccurrences(DateTime.Now, DateTime.Now.AddYears(occurances))
                            .Take(occurances);
-
         }
     }
 }
