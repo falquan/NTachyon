@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace NTachyon_Web.Controllers
+namespace NTachyon.Web.Controllers
 {
     public class HomeController : Controller
     {
@@ -16,7 +16,7 @@ namespace NTachyon_Web.Controllers
 
         public IActionResult Error()
         {
-            ViewData["RequestId"] = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+            ViewData["RequestId"] = Activity.Current?.Id ?? HttpContext?.TraceIdentifier;
             return View();
         }
     }
