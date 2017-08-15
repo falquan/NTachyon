@@ -25,6 +25,7 @@ services:
     build:
       context: ./src/NTachyon.Api
       dockerfile: Dockerfile
+    restart: always
     volumes:
       - ./src/NTachyon.Api/bin/Debug/netcoreapp1.1/publish/:/app
       - ~/.nuget/packages:/root/.nuget/packages:ro
