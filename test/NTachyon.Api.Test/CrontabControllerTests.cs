@@ -106,5 +106,35 @@ namespace NCrontab.Api.Test
             Assert.NotNull(actual);
             mock.Received().IsValid(Arg.Any<string>());
         }
+
+        [Fact]
+        public void Post_WithOccurances_ReturnsOk()
+        {
+            var controller = new CrontabController(mock);
+
+            var actual = controller.Post(
+                new CrontabRequest {
+                    Expression = CronExpressions.FiveArguments,
+                    Occurances = 10
+                });
+
+            Assert.IsType<OkObjectResult>(actual);
+            mock.Received().IsValid(Arg.Any<string>());
+        }
+
+        [Fact]
+        public void Post_WithInvalidExpressionAndOccurances_ReturnsBadRequest()
+        {
+            var controller = new CrontabController(mock);
+
+            var actual = controller.Post(
+                new CrontabRequest {
+                    Expression = CronExpressions.InvalidExpression,
+                    Occurances = 10
+                });
+
+            Assert.IsType<BadRequestObjectResult>(actual);
+            mock.Received().IsValid(Arg.Any<string>());
+        }
     }
 }
