@@ -20,6 +20,16 @@ namespace NTachyon.Api.Test
         }
 
         [Fact]
+        public void IsValid_WithValidExpressionAndSixArguments_ReturnsTrue()
+        {
+            var crontab = new NTachyon.Api.Crontab.NCrontab();
+
+            var actual = crontab.IsValid(CronExpressions.SixArguments);
+
+            Assert.True(actual);
+        }
+
+        [Fact]
         public void IsValid_WithInvalidExpression_ReturnsFalse()
         {
             var crontab = new NTachyon.Api.Crontab.NCrontab();
