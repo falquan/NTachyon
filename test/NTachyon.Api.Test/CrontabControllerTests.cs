@@ -44,7 +44,7 @@ namespace NCrontab.Api.Test
             mock.Received().IsValid(Arg.Any<string>());
             mock.Received().Get(Arg.Any<string>(), Arg.Any<int>());
         }
-                
+
         [Fact]
         public void Get_WithInvalidExpression_ReturnsBadRequest()
         {
@@ -104,6 +104,36 @@ namespace NCrontab.Api.Test
                 as BadRequestObjectResult;
 
             Assert.NotNull(actual);
+            mock.Received().IsValid(Arg.Any<string>());
+        }
+
+        [Fact]
+        public void Post_WithTriggers_ReturnsOk()
+        {
+            var controller = new CrontabController(mock);
+
+            var actual = controller.Post(
+                new CrontabRequest {
+                    Expression = CronExpressions.FiveArguments,
+                    Triggers = 10
+                });
+
+            Assert.IsType<OkObjectResult>(actual);
+            mock.Received().IsValid(Arg.Any<string>());
+        }
+
+        [Fact]
+        public void Post_WithInvalidExpressionAndTriggers_ReturnsBadRequest()
+        {
+            var controller = new CrontabController(mock);
+
+            var actual = controller.Post(
+                new CrontabRequest {
+                    Expression = CronExpressions.InvalidExpression,
+                    Triggers = 10
+                });
+
+            Assert.IsType<BadRequestObjectResult>(actual);
             mock.Received().IsValid(Arg.Any<string>());
         }
     }
