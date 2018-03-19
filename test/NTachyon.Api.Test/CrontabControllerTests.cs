@@ -18,7 +18,7 @@ namespace NCrontab.Api.Test
         {
             mock = Substitute.For<ICrontab>();
             mock.IsValid(CronExpressions.FiveArguments).Returns(true);
-            mock.Get(CronExpressions.FiveArguments).Returns(default(List<DateTime>));
+            mock.Get(CronExpressions.FiveArguments, 5).Returns(default(List<DateTime>));
         }
 
         [Fact]
