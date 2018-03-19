@@ -59,22 +59,22 @@ namespace NTachyon.Api.Test
             Assert.True(actual.Count() == 2);
         }
 
-        // [Fact]
-        // public void Get_WithNullOccurances_ReturnsFiveTimestamps()
-        // {
-        //     var crontab = new NTachyon.Api.Crontab.NCrontab();
-
-        //     var actual = crontab.Get(CronExpressions.FiveArguments);
-
-        //     Assert.True(actual.Count() == 5);
-        // }
-
         [Fact]
         public void Get_WithValidExpression_Returns()
         {
             var crontab = new NTachyon.Api.Crontab.NCrontab();
 
             var actual = crontab.Get(CronExpressions.FiveArguments);
+
+            Assert.NotNull(actual);
+        }
+
+        [Fact]
+        public void Get_WithSixArgumentValidExpression_Returns()
+        {
+            var crontab = new NTachyon.Api.Crontab.NCrontab();
+
+            var actual = crontab.Get(CronExpressions.SixArguments);
 
             Assert.NotNull(actual);
         }

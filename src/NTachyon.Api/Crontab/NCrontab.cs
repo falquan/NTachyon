@@ -14,7 +14,7 @@ namespace NTachyon.Api.Crontab
             == null ? false : true;
 
         public IEnumerable<DateTime> Get(string expression, int occurances = 5) =>
-            CrontabSchedule.Parse(expression)
+            CrontabSchedule.Parse(expression, new ParseOptions { IncludingSeconds = expression.Split(' ').Length > 5 })
                            .GetNextOccurrences(DateTime.Now, DateTime.Now.AddYears(occurances))
                            .Take(occurances);
     }
