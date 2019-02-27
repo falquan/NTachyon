@@ -23,7 +23,11 @@ namespace NTachyon.Api.Controllers
 
             if (crontab.IsValid(decodedExpression))
             {
-                return Ok(crontab.Get(decodedExpression, 5));
+                return Ok(
+                    new CrontabResponse
+                    {
+                        Triggers = crontab.Get(decodedExpression, 5)
+                    });
             }
 
             return BadRequest(decodedExpression);
@@ -34,9 +38,13 @@ namespace NTachyon.Api.Controllers
         {
             if (crontab.IsValid(request.Expression))
             {
-                return Ok(crontab.Get(
-                    request.Expression,
-                    request.Triggers.Value));
+                return Ok(
+                    new CrontabResponse
+                    {
+                        Triggers = crontab.Get(
+                            request.Expression,
+                            request.Triggers.Value)
+                    });
             }
 
             return BadRequest(request);
