@@ -1,5 +1,5 @@
-FROM microsoft/aspnetcore:latest
-ARG source=./bin/Debug/netcoreapp2.0/publish/
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
+ARG source=./bin/Debug/netcoreapp2.2/publish/
 WORKDIR /app
 COPY $source .
 
