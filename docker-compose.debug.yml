@@ -11,7 +11,7 @@ services:
     links:
       - ntachyon.api
     volumes:
-      - ./src/NTachyon.Web/bin/Debug/netcoreapp2.0/publish/:/app
+      - ./src/NTachyon.Web/bin/Debug/netcoreapp2.2/publish/:/app
       - ~/.nuget/packages:/root/.nuget/packages:ro
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets
     environment:
@@ -26,7 +26,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     volumes:
-      - ./src/NTachyon.Api/bin/Debug/netcoreapp2.0/publish/:/app
+      - ./src/NTachyon.Api/bin/Debug/netcoreapp2.2/publish/:/app
       - ~/.nuget/packages:/root/.nuget/packages:ro
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets
     environment:
